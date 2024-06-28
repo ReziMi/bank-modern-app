@@ -2,17 +2,18 @@
     "version": 2,
     "builds": [
       {
-        "src": "vite.config.js",
-        "use": "@vercel/node",
+        "src": "src", // Point to your source directory containing your Vite app's code
+        "use": "@vercel/nft", // Use the "@vercel/nft" builder for optimized Vite deployments
         "config": {
-          "maxLambdaSize": "50mb"
+          "build": "vite build", // Override the default build command if necessary
+          "entry": "/index.html" // Optional: Specify the entry point if non-standard
         }
       }
     ],
     "routes": [
       {
-        "src": "/(.*)",
-        "dest": "vite.config.js"
+        "src": "/(.*)", // Rewrite all routes to index.html for client-side routing
+        "dest": "/index.html"
       }
     ]
   }
